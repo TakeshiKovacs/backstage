@@ -28,3 +28,19 @@ jobs:
         yarn install --frozen-lockfile
         yarn tsc
         yarn build:backend --config ../../app-config.yaml
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.APPRGID }}
+          client-secret: ${{ secrets.APPRGSECRET }}
+          tenant-id: a5fd5ad6-e9c2-41d4-afd5-b466d95c9c7c
+          subscription-id: f407a12a-7102-436f-acad-072d7dbafdd3
+
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az account show
+          az storage -h
