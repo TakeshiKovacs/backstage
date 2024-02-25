@@ -34,9 +34,12 @@ jobs:
       with:
         creds: '{"clientId":"${{ secrets.APPRGID }}","clientSecret":"${{ secrets.APPRGSECRET }}","subscriptionId":"f407a12a-7102-436f-acad-072d7dbafdd3","tenantId":"a5fd5ad6-e9c2-41d4-afd5-b466d95c9c7c"}'
 
-    - name: Azure CLI script
-      uses: azure/CLI@v1
+    - name: 'Build and push image'
+      uses: azure/docker-login@v1
       with:
-        azcliversion: 2.30.0
-        inlineScript: |
-          docker image build . -f packages/backend/Dockerfile --tag mattest.azurecr.io/backstage
+        login-server: 'mattest.azurecr.io'
+        username: ${{ secrets.APPRGID }}
+        password: ${{ secrets.APPRGSECRET }}
+    - run: |
+        docker image build . -f packages/backend/Dockerfile --tag mattest.azurecr.io/backstage
+        docker push mattest.azurecr.io/backstage:${{ github.sha }}
