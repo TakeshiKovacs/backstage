@@ -27,5 +27,4 @@ jobs:
       run: |
         yarn install --frozen-lockfile
         yarn tsc
-        cd backstage
         yarn build:backend --config ../../app-config.yaml
