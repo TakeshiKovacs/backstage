@@ -52,6 +52,6 @@ jobs:
         azcliversion: 2.30.0
         inlineScript: |
           az containerapp up \
-            --name 'backstage \
+            --name 'backstage' \
             --image 'mattest.azurecr.io/backstage:${{ github.sha }}' \
             --resource-group 'rg-backstage'
