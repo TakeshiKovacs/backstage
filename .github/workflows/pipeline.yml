@@ -42,5 +42,6 @@ jobs:
         username: ${{ secrets.APPRGID }}
         password: ${{ secrets.APPRGSECRET }}
     - run: |
-        docker image build . -f ./backstage/packages/backend/Dockerfile --tag mattest.azurecr.io/backstage
+        cd backstage 
+        docker image build . -f packages/backend/Dockerfile --tag mattest.azurecr.io/backstage
         docker push mattest.azurecr.io/backstage:${{ github.sha }}
