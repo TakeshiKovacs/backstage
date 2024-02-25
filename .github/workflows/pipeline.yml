@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build
-      working-directory: ../backstage
+      working-directory: ../
       run: |
         yarn install --frozen-lockfile
         yarn tsc
