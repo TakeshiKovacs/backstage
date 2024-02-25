@@ -39,5 +39,4 @@ jobs:
       with:
         azcliversion: 2.30.0
         inlineScript: |
-          az account show
-          az storage -h
+          docker image build . -f packages/backend/Dockerfile --tag mattest.azurecr.io/backstage
