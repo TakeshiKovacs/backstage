@@ -45,3 +45,19 @@ jobs:
         cd backstage 
         docker image build . -f packages/backend/Dockerfile --tag mattest.azurecr.io/backstage:${{ github.sha }}
         docker push mattest.azurecr.io/backstage:${{ github.sha }}
+
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az containerapp up \
+          --name 'backstage \
+          --image 'mattest.azurecr.io/backstage:${{ github.sha }}' \
+          --resource-group 'rg-backstage'
+        
+
+az containerapp up \
+  --name <CONTAINER_APP_NAME> \
+  --image <REGISTRY_SERVER>/<IMAGE_NAME>:<TAG> \
+  --resource-group <RESOURCE_GROUP_NAME>
