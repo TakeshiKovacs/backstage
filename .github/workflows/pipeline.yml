@@ -57,3 +57,4 @@ jobs:
             --name 'backstage' \
             --image 'mattest.azurecr.io/backstage:${{ github.sha }}' \
             --resource-group 'rg-backstage'
+            --environment 'cae-mat'
