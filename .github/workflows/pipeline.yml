@@ -51,6 +51,7 @@ jobs:
       with:
         azcliversion: 2.30.0
         inlineScript: |
+          az extension add -n containerapp
           az containerapp up \
             --name 'backstage' \
             --image 'mattest.azurecr.io/backstage:${{ github.sha }}' \
