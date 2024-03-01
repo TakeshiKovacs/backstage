@@ -56,6 +56,7 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
 
+
     # The final step is to register our new component in the catalog.
     - id: register
       name: Register
@@ -63,7 +64,7 @@ spec:
       input:
         repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
         catalogInfoPath: '/catalog-info.yaml'
-
+        repoVisibility: public
   # Outputs are displayed to the user after a successful execution of the template.
   output:
     links:
